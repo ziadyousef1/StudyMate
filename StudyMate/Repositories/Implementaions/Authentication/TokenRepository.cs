@@ -2,17 +2,17 @@
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using EcommerceApp.Domain.Entities.Identity;
-using EcommerceApp.Domain.Interfaces.Authentication;
-using EcommerceApp.Infrastructure.Data;
-using EcommerceApp.Infrastructure.Settings;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using StudyMate.Data;
+using StudyMate.Models;
+using StudyMate.Repositories.Interfaces;
 
-namespace EcommerceApp.Infrastructure.Repositories.Authentication
+namespace StudyMate.Repositories.Implementaions.Authentication
 {
-    public class TokenRepository(AppDbContext context ,IOptions<JwtSettings> jwtSettings) : ITokenManagement
+    public class TokenRepository(ApplicationDbContext context ,IOptions<JwtSettings> jwtSettings) : ITokenRepository
     {
         private readonly JwtSettings _jwtSettings = jwtSettings.Value;
         public async Task<int> AddRefreshToken(string userId, string refreshToken)

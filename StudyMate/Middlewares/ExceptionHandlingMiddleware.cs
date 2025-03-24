@@ -1,13 +1,9 @@
-﻿using EcommerceApp.Application.Services.Interfaces.Logging;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.DependencyInjection;
-using System.Data.Common;
-using System.Net;
-using System.Net.Mime;
+﻿
+    using System.Data.Common;
+    using System.Net;
+    using Microsoft.Data.SqlClient;
+    using StudyMate.Services.Interfaces;
 
-namespace EcommerceApp.Infrastructure.middleware
-{
     public class ExceptionHandlingMiddleware(RequestDelegate _next)
     {
         public async Task InvokeAsync(HttpContext context)
@@ -66,4 +62,4 @@ namespace EcommerceApp.Infrastructure.middleware
         }
 
     }
-}
+

@@ -1,16 +1,17 @@
 ﻿
-using EcommerceApp.Application.DTOs.Identity;
 using FluentValidation;
+using StudyMate.DTOs.Authentication;
 
-namespace EcommerceApp.Application.Validations.Authentication
+namespace StudyMate.Validations.Authentication
 {
     public class CreateUserValidator : AbstractValidator<CreateUser>
     {
         public CreateUserValidator()
         {
-            RuleFor(x => x.FullName)
-                .NotEmpty().WithMessage("Full name is required");
-
+            RuleFor(x => x.FirstName)
+                .NotEmpty().WithMessage("First name is required");
+            RuleFor(x => x.LastName)
+                .NotEmpty().WithMessage("Last name is required");
             RuleFor(x => x.Email)
                 .NotEmpty().WithMessage("Email is required")
                 .EmailAddress().WithMessage("Email is not valid");

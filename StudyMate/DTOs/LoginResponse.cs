@@ -1,4 +1,4 @@
-﻿namespace EcommerceApp.Application.DTOs
+﻿namespace StudyMate.DTOs
 {
     public record LoginResponse
         (

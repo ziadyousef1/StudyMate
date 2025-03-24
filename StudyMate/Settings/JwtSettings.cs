@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EcommerceApp.Infrastructure.Settings
-{
-    public class JwtSettings
+﻿    public class JwtSettings
     {
         public const string JwtSetting = "JwtSettings";
         public string Key { get; set; }
@@ -14,4 +6,4 @@ namespace EcommerceApp.Infrastructure.Settings
         public string Audience { get; set; }
         public int ExpiryMinutes { get; set; }
     }
-}
+

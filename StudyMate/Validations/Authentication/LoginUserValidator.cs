@@ -1,7 +1,7 @@
-using EcommerceApp.Application.DTOs.Identity;
 using FluentValidation;
+using StudyMate.DTOs.Authentication;
 
-namespace EcommerceApp.Application.Validations.Authentication;
+namespace StudyMate.Validations.Authentication;
 
 public class LoginUserValidator : AbstractValidator<LoginUser>
 {

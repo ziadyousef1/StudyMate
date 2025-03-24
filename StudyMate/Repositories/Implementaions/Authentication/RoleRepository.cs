@@ -1,10 +1,11 @@
-﻿using EcommerceApp.Domain.Entities.Identity;
-using EcommerceApp.Domain.Interfaces.Authentication;
+﻿
 using Microsoft.AspNetCore.Identity;
+using StudyMate.Models;
+using StudyMate.Repositories.Interfaces;
 
-namespace EcommerceApp.Infrastructure.Repositories.Authentication
+namespace StudyMate.Repositories.Implementaions.Authentication
 {
-    public class RoleRepository(UserManager<AppUser> userManager) : IRoleManagement
+    public class RoleRepository(UserManager<AppUser> userManager) : IRoleRepository
     {
         public async Task<bool> AddUserToRole(AppUser user, string roleName)
         {

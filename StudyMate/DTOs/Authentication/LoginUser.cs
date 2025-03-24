@@ -1,4 +1,4 @@
-﻿namespace EcommerceApp.Application.DTOs.Identity
+﻿namespace StudyMate.DTOs.Authentication
 {
     public class LoginUser : BaseModel
     { }

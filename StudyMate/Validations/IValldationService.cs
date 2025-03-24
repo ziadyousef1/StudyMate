@@ -1,7 +1,8 @@
-using EcommerceApp.Application.DTOs;
-using FluentValidation;
 
-namespace EcommerceApp.Application.Validations;
+using FluentValidation;
+using StudyMate.DTOs;
+
+namespace StudyMate.Validations;
 
 public interface IValldationService
 {

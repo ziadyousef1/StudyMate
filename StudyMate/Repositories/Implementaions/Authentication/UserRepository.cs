@@ -1,15 +1,18 @@
 ﻿using AutoMapper.Configuration.Annotations;
-using EcommerceApp.Domain.Entities.Identity;
-using EcommerceApp.Domain.Interfaces.Authentication;
-using EcommerceApp.Infrastructure.Data;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using StudyMate.Data;
+using StudyMate.DTOs;
+using StudyMate.DTOs.Authentication;
+using StudyMate.Models;
+using StudyMate.Repositories.Interfaces;
 
-namespace EcommerceApp.Infrastructure.Repositories.Authentication
+namespace StudyMate.Repositories.Implementaions.Authentication
 {
     public class UserRepository(UserManager<AppUser> userManager
-        , IRoleManagement roleManagement, AppDbContext context) : IUserManagement
+        , IRoleRepository roleRepository, ApplicationDbContext context) : IUserRepository
     {
         public async Task<bool> CreateUser(AppUser appUser)
         {
@@ -34,7 +37,7 @@ namespace EcommerceApp.Infrastructure.Repositories.Authentication
         public async Task<List<Claim>> GetUserClaims(string email)
         {
             var user = await GetUserByEmail(email);
-            string? role = await roleManagement.GetUserRole(user.Email!);
+            string? role = await roleRepository.GetUserRole(user.Email!);
             var claims = new List<Claim>
             {
                 new Claim("Full Name", user!.UserName),
@@ -46,18 +49,29 @@ namespace EcommerceApp.Infrastructure.Repositories.Authentication
 
         }
 
-        public async Task<bool> LoginUser(AppUser appUser)
+        public async Task<bool> ResetPassword(AppUser appUser,ResetPassword resetPassword)
+        {
+            var passwordHashed=  userManager.PasswordHasher.HashPassword(appUser,resetPassword.NewPassword);
+            appUser.PasswordHash = passwordHashed;
+            var result = await userManager.UpdateAsync(appUser);
+            return result.Succeeded;
+        }
+      
+
+        public async Task<LoginResponse> LoginUser(AppUser appUser)
         {
             var user = await GetUserByEmail(appUser.Email!);
             if (user is null)
-                return false;
-            var roleName = await roleManagement.GetUserRole(user.Email!);
-            if(string.IsNullOrEmpty(roleName))
-                return false;
+                return new LoginResponse(false, "User not found");
 
-            return await userManager.CheckPasswordAsync(user, appUser.PasswordHash!);           
+            if (user.EmailConfirmed == false)
+                return new LoginResponse(false, "Email not confirmed");
 
-            
+            var isPasswordValid = await userManager.CheckPasswordAsync(user, appUser.PasswordHash!);
+            if (!isPasswordValid)
+                return new LoginResponse(false, "Invalid password");
+
+            return new LoginResponse(true, "Login successful");            
         }
 
         public async Task<int> RemoveUserByEmail(string email)
@@ -72,10 +86,10 @@ namespace EcommerceApp.Infrastructure.Repositories.Authentication
 
         public async Task<AppUser?> UpdateUser(AppUser appUser)
         {
-            var user = GetUserByEmail(appUser.Email!);
+            var user = await GetUserByEmail(appUser.Email!);
             if (user is null)
                 return null;
-             context.Users.Update(appUser);
+            context.Users.Update(appUser);
             await context.SaveChangesAsync();
             return appUser;
         }

@@ -1,6 +1,5 @@
 namespace StudyMate.DTOs;
 
-public class ServiceResponse
-{
-    
-}
+
+public  record ServiceResponse(string Message= null!, bool IsSuccess=false);
+
