@@ -16,4 +16,5 @@ public interface IUserRepository
     Task<int> RemoveUserByEmail(string email);
     Task<List<Claim>> GetUserClaims(string email);
     Task<bool> ResetPassword(AppUser appUser,ResetPassword resetPassword);
+    Task<bool> UpdateUserAllUsers();
 }
