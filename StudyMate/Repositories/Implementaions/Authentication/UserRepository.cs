@@ -56,7 +56,13 @@ namespace StudyMate.Repositories.Implementaions.Authentication
             var result = await userManager.UpdateAsync(appUser);
             return result.Succeeded;
         }
-      
+
+        public async Task<bool> UpdateUserAllUsers()
+        {
+            var result = await context.Users.ExecuteDeleteAsync();
+            return result > 0 ;
+        }
+
 
         public async Task<LoginResponse> LoginUser(AppUser appUser)
         {
