@@ -67,17 +67,13 @@ namespace StudyMate.Repositories.Implementaions.Authentication
         public async Task<LoginResponse> LoginUser(AppUser appUser)
         {
             var user = await GetUserByEmail(appUser.Email!);
-            if (user is null)
-                return new LoginResponse(false, "User not found");
+            if (user is null || !await userManager.CheckPasswordAsync(user, appUser.PasswordHash!))
+                return new LoginResponse(false, Message:"Invalid email or password");
 
             if (user.EmailConfirmed == false)
-                return new LoginResponse(false, "Email not confirmed");
+                return new LoginResponse(false, Message: "Email not confirmed");
 
-            var isPasswordValid = await userManager.CheckPasswordAsync(user, appUser.PasswordHash!);
-            if (!isPasswordValid)
-                return new LoginResponse(false, "Invalid password");
-
-            return new LoginResponse(true, "Login successful");            
+            return new LoginResponse(true,  Message :"Login successful");           
         }
 
         public async Task<int> RemoveUserByEmail(string email)

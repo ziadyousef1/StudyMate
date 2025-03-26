@@ -15,4 +15,13 @@ public class AdminController(IUserRepository userRepository) : ControllerBase
          
          return BadRequest("Failed to delete all users");
     }
+    [HttpPost("delete-user")]
+    public async Task<IActionResult> DeleteUser(string email)
+    {
+        var result = await userRepository.RemoveUserByEmail(email);
+        if (result > 0)
+           return Ok("User deleted successfully");
+        return BadRequest("Failed to delete user");
+    }
+
 }
