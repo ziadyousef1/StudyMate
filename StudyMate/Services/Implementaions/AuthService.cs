@@ -19,7 +19,7 @@ namespace StudyMate.Services.Implementaions
         IRoleRepository roleRepository,
         IAppLogger<AuthService> logger,
         IMapper mapper,
-        IValidator<CreateUser> createUserValidator,
+        IValidator<RegisterUser> createUserValidator,
         IValidator<LoginUser> loginUserValidator,
         IValidator<ResetPassword> resetPasswordValidator,
         IValidator<ConfirmEmail> confirmEmailValidator,
@@ -29,7 +29,7 @@ namespace StudyMate.Services.Implementaions
         IVerificationCodeRepository verificationCodeRepository) :IAuthService
     {
 
-        public async Task<ServiceResponse> CreateUser(CreateUser user)
+        public async Task<ServiceResponse> CreateUser(RegisterUser user)
         {
             var  validationResult = await validationService.ValidateAsync(user, createUserValidator);
             if(!validationResult.IsSuccess)
@@ -40,7 +40,7 @@ namespace StudyMate.Services.Implementaions
             mappedUser.UserName = user.Email;
             mappedUser.PasswordHash = user.Password;
             var result = await userRepository.CreateUser(mappedUser);
-            if(!result)
+            if(!result.Succeeded)
             {
                 return new ServiceResponse { Message = "User creation failed", IsSuccess = false };
             }

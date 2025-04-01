@@ -102,13 +102,13 @@ namespace StudyMate.Migrations
                     b.Property<string>("ClaimValue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("Id")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("Id");
 
                     b.ToTable("AspNetUserClaims", (string)null);
                 });
@@ -126,26 +126,26 @@ namespace StudyMate.Migrations
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("Id")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("Id");
 
                     b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("Id", "RoleId");
 
                     b.HasIndex("RoleId");
 
@@ -154,7 +154,7 @@ namespace StudyMate.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.Property<string>("UserId")
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
@@ -168,7 +168,7 @@ namespace StudyMate.Migrations
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("Id", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
@@ -278,7 +278,7 @@ namespace StudyMate.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("Id")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -322,13 +322,13 @@ namespace StudyMate.Migrations
                     b.Property<DateTime>("ExpirationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("Id")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("Id");
 
                     b.ToTable("VerificationCodes");
                 });
@@ -346,7 +346,7 @@ namespace StudyMate.Migrations
                 {
                     b.HasOne("StudyMate.Models.AppUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -355,7 +355,7 @@ namespace StudyMate.Migrations
                 {
                     b.HasOne("StudyMate.Models.AppUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -370,7 +370,7 @@ namespace StudyMate.Migrations
 
                     b.HasOne("StudyMate.Models.AppUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -379,7 +379,7 @@ namespace StudyMate.Migrations
                 {
                     b.HasOne("StudyMate.Models.AppUser", null)
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -397,7 +397,7 @@ namespace StudyMate.Migrations
                 {
                     b.HasOne("StudyMate.Models.AppUser", "User")
                         .WithMany("VerificationCodes")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

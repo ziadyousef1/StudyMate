@@ -35,7 +35,7 @@ namespace StudyMate.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_VerificationCodes_UserId",
                 table: "VerificationCodes",
-                column: "UserId");
+                column: "Id");
         }
 
         /// <inheritdoc />

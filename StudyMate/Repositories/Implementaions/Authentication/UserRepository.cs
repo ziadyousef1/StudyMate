@@ -14,13 +14,25 @@ namespace StudyMate.Repositories.Implementaions.Authentication
     public class UserRepository(UserManager<AppUser> userManager
         , IRoleRepository roleRepository, ApplicationDbContext context) : IUserRepository
     {
-        public async Task<bool> CreateUser(AppUser appUser)
+        public async Task<UserResult> CreateUser(AppUser appUser)
         {
+            var userResult = new UserResult();
             var user =await GetUserByEmail(appUser.Email!);
-            if (user is not null) return false;
+            if (user is not null)
+            {
+                userResult.Succeeded = false;
+                userResult.Errors.Add("User with this email already exists");
+                return userResult;
+            }
             var result = await userManager.CreateAsync(appUser, appUser.PasswordHash!);
-           
-            return result.Succeeded;
+            if(result.Succeeded)
+            {
+                var assignedResult = await roleRepository.AddUserToRole(appUser, "User");
+                userResult.Succeeded = true;
+                userResult.UserId = appUser.Id;
+            }
+         
+            return userResult;
         }
 
         public async Task<IEnumerable<AppUser>> GetAllUsers()
@@ -57,7 +69,7 @@ namespace StudyMate.Repositories.Implementaions.Authentication
             return result.Succeeded;
         }
 
-        public async Task<bool> UpdateUserAllUsers()
+        public async Task<bool> DeleteUserAllUsers()
         {
             var result = await context.Users.ExecuteDeleteAsync();
             return result > 0 ;

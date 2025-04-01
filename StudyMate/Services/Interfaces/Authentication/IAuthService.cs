@@ -6,7 +6,7 @@ namespace  StudyMate.Services.Interfaces.Authentication
 {
     public interface IAuthService
     {
-        Task<ServiceResponse> CreateUser(CreateUser user);
+        Task<ServiceResponse> CreateUser(RegisterUser user);
         Task<LoginResponse> Login(LoginUser user);
         Task<ServiceResponse> ConfirmEmail(ConfirmEmail confirmEmail);
         Task<ServiceResponse> ForgotPassword(ForgotPassword forgotPassword);

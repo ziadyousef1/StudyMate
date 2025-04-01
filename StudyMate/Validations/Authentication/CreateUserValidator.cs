@@ -4,7 +4,7 @@ using StudyMate.DTOs.Authentication;
 
 namespace StudyMate.Validations.Authentication
 {
-    public class CreateUserValidator : AbstractValidator<CreateUser>
+    public class CreateUserValidator : AbstractValidator<RegisterUser>
     {
         public CreateUserValidator()
         {
@@ -16,6 +16,58 @@ namespace StudyMate.Validations.Authentication
                 .NotEmpty().WithMessage("Email is required")
                 .EmailAddress().WithMessage("Email is not valid");
 
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             RuleFor(x => x.Password).
                 NotEmpty().WithMessage("Password is required");
 

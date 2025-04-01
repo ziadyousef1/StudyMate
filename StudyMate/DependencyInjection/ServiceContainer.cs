@@ -15,6 +15,7 @@ using StudyMate.Repositories.Interfaces;
 using StudyMate.Services.Implementaions;
 using StudyMate.Services.Interfaces;
 using StudyMate.Services.Interfaces.Authentication;
+using StudyMate.Settings;
 using StudyMate.Validations;
 using StudyMate.Validations.Authentication;
 
@@ -35,6 +36,7 @@ namespace StudyMate.DependancyInjection;
             services.AddAutoMapper(typeof(ServiceContainer));
             services.AddSingleton(Log.Logger);
             services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.JwtSetting));
+            services.Configure<AzureStorageSettings>(configuration.GetSection(AzureStorageSettings.AzureStorage));
             
             services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 
@@ -45,6 +47,9 @@ namespace StudyMate.DependancyInjection;
             services.AddScoped<IUserRepository,UserRepository>();
             services.AddScoped<ITokenRepository,TokenRepository>();
             services.AddScoped<IRoleRepository,RoleRepository>();
+            services.AddScoped<IUserService,UserService>();
+            services.AddScoped<IImageService,ImageService>();
+            services.AddScoped<ICloudStorageService, CloudStorageService>();
             var emailConfiguration = configuration.GetSection("EmailConfiguration").Get<EmailConfigration>();
             
             services.AddSingleton(emailConfiguration);  

@@ -23,9 +23,9 @@ public class AuthenticationController(IAuthService authenticationService) : Cont
         return BadRequest(result);
     }
     [HttpPost("Register")]
-    public async Task<IActionResult> Register([FromBody] CreateUser createUser)
+    public async Task<IActionResult> Register([FromBody] RegisterUser registerUser)
     {
-        var result = await authenticationService.CreateUser(createUser);
+        var result = await authenticationService.CreateUser(registerUser);
         if (result.IsSuccess)
         {
             return Ok(result);
