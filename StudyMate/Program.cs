@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Serilog;
 using StudyMate.DependancyInjection;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,16 +20,22 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     }
 );
 builder.Services.AddControllers();
+builder.Services.AddOpenApi();
 
-builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplicationServices(builder.Configuration);
 
 var app = builder.Build();
+app.MapOpenApi();
+app.MapScalarApiReference(options =>
+{
+    options.WithTitle("StudyMate API")
+        .WithTheme(ScalarTheme.Mars)
+        .WithDefaultHttpClient(ScalarTarget.Dart, ScalarClient.HttpClient);
 
 
-    app.UseSwagger();
-    app.UseSwaggerUI();
+});
+
 
 app.UseHttpsRedirection();
 
