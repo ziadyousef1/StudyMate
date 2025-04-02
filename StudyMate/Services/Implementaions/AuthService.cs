@@ -46,18 +46,6 @@ namespace StudyMate.Services.Implementaions
             }
 
             var _user = await userRepository.GetUserByEmail(user.Email);
-            var assignedResult = await roleRepository.AddUserToRole(_user, "User");
-            
-            
-            if(!assignedResult)
-            {
-               int removeUserResult = await userRepository.RemoveUserByEmail(_user.Email);
-                if(removeUserResult <= 0)
-                {
-                    logger.LogError( new Exception($"User with email {_user.Email} could not be removed"), "User Could not be assigned role" );
-                    return new ServiceResponse{Message ="Error occured on creating account", IsSuccess = false};
-                }
-            }
             var code = GenerateRandomNumber();
             await verificationCodeRepository.StoreVerificationCode(_user.Id, code);
             await emailSender.CreateAccountConfirmationEmail(_user,code.ToString());

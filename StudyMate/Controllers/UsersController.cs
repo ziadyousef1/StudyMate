@@ -55,8 +55,8 @@ public class UsersController:ControllerBase
     [HttpPost("{userId}/upload-image")]
     public async Task<IActionResult> UploadImage([FromRoute] string userId, IFormFile image)
     {
-        if (this.GetUserId() != userId)
-         return Unauthorized();
+        // if (this.GetUserId() != userId)
+        //  return Unauthorized();
         var result = await _imageService.UploadImageAsync(image, userId);
         if (result.IsSuccess)
           return Ok(result);
@@ -66,8 +66,8 @@ public class UsersController:ControllerBase
     [HttpDelete("{userId}/delete-image")]
     public async Task<IActionResult> DeleteImage([FromRoute]string userId)
     {
-        if (this.GetUserId() != userId)
-            return Unauthorized();
+        // if (this.GetUserId() != userId)
+        //     return Unauthorized();
         var result = await _imageService.DeleteImageAsync(userId);
         if (result.IsSuccess)
           return Ok(result);
