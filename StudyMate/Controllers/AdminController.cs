@@ -1,12 +1,15 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudyMate.Repositories.Interfaces;
 
 namespace StudyMate.Controllers;
-
+[ApiController]
+[Route("api/[controller]")]
 public class AdminController(IUserRepository userRepository) : ControllerBase
 {
  
     [HttpPost("delete-all-users")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteAllUsers()
     {
        var result =await userRepository.DeleteUserAllUsers();
@@ -16,6 +19,8 @@ public class AdminController(IUserRepository userRepository) : ControllerBase
          return BadRequest("Failed to delete all users");
     }
     [HttpPost("delete-user")]
+    [Authorize(Roles = "Admin,User")]
+
     public async Task<IActionResult> DeleteUser(string email)
     {
         var result = await userRepository.RemoveUserByEmail(email);

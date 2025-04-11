@@ -29,7 +29,12 @@ namespace StudyMate.DependancyInjection;
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("ProductionConnection")));
-            services.AddDefaultIdentity<AppUser>( )
+            services.AddDefaultIdentity<AppUser>(opt =>
+                {
+                    opt.Password.RequireDigit = false;
+                    opt.Password.RequireNonAlphanumeric = false;
+                    opt.Password.RequireUppercase = false;
+                } )
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

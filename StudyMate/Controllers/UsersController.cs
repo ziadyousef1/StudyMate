@@ -1,12 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StudyMate.DTOs;
 using StudyMate.DTOs.Profile;
-using StudyMate.Repositories.Interfaces;
 using StudyMate.Services.Interfaces;
 
 namespace StudyMate.Controllers;
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class UsersController:ControllerBase
 {
     private readonly IUserService _userService;
@@ -18,6 +19,7 @@ public class UsersController:ControllerBase
         _imageService = imageService;
     }
     [HttpPost]
+    
     public async Task<IActionResult> Create(CreateUser createUser)
     {
         if(!ModelState.IsValid)
@@ -55,8 +57,8 @@ public class UsersController:ControllerBase
     [HttpPost("{userId}/upload-image")]
     public async Task<IActionResult> UploadImage([FromRoute] string userId, IFormFile image)
     {
-        // if (this.GetUserId() != userId)
-        //  return Unauthorized();
+        if (this.GetUserId() != userId)
+           return Unauthorized();
         var result = await _imageService.UploadImageAsync(image, userId);
         if (result.IsSuccess)
           return Ok(result);
@@ -66,8 +68,8 @@ public class UsersController:ControllerBase
     [HttpDelete("{userId}/delete-image")]
     public async Task<IActionResult> DeleteImage([FromRoute]string userId)
     {
-        // if (this.GetUserId() != userId)
-        //     return Unauthorized();
+        if (this.GetUserId() != userId)
+              return Unauthorized();
         var result = await _imageService.DeleteImageAsync(userId);
         if (result.IsSuccess)
           return Ok(result);
