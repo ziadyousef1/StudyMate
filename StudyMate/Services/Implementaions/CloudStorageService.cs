@@ -12,13 +12,13 @@ namespace StudyMate.Services.Implementaions;
 
 public class CloudStorageService: ICloudStorageService
 {
-    private readonly AzureStorageSettings _azureSettings;
+    private readonly CloudStorageSettings _cloudSettings;
     private readonly BlobServiceClient _blobServiceClient;
 
-    public CloudStorageService(IOptions<AzureStorageSettings> azureSettings)
+    public CloudStorageService(IOptions<CloudStorageSettings> azureSettings)
     {
-        _azureSettings = azureSettings.Value;
-        _blobServiceClient = new BlobServiceClient(_azureSettings.ConnectionString);
+        _cloudSettings = azureSettings.Value;
+        _blobServiceClient = new BlobServiceClient(_cloudSettings.ConnectionString);
 
     }
     

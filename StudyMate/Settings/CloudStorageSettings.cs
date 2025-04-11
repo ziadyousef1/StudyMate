@@ -1,8 +1,8 @@
 namespace StudyMate.Settings;
 
-public class AzureStorageSettings
+public class CloudStorageSettings
 {
-    public const string AzureStorage = "AzureBlobStorage";
+    public const string AzureStorage = "BlobStorage";
     public string ConnectionString { get; set; }
     public ContainersOptions Containers { get; set; }
     

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Org.BouncyCastle.Crypto.Parameters;
 using Serilog;
 using StudyMate.Data;
 using StudyMate.Models;
@@ -41,7 +42,8 @@ namespace StudyMate.DependancyInjection;
             services.AddAutoMapper(typeof(ServiceContainer));
             services.AddSingleton(Log.Logger);
             services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.JwtSetting));
-            services.Configure<AzureStorageSettings>(configuration.GetSection(AzureStorageSettings.AzureStorage));
+            services.Configure<CloudStorageSettings>(configuration.GetSection(CloudStorageSettings.AzureStorage));
+            services.Configure<AiSettings>(configuration.GetSection(AiSettings.AzureAi));
             
             services.AddValidatorsFromAssemblyContaining<CreateUserValidator>();
 
@@ -57,6 +59,7 @@ namespace StudyMate.DependancyInjection;
             services.AddScoped<INoteService, NoteService>();
             services.AddScoped<IImageService,ImageService>();
             services.AddScoped<ICloudStorageService, CloudStorageService>();
+            services.AddScoped<ISummarizeService,SummarizeService>();
             var emailConfiguration = configuration.GetSection("EmailConfiguration").Get<EmailConfigration>();
             
             services.AddSingleton(emailConfiguration);  

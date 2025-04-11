@@ -10,15 +10,15 @@ public class ImageService : IImageService
 {
     private readonly IUserRepository _userRepository;
     private readonly ICloudStorageService _cloudStorageService;
-    private readonly AzureStorageSettings _azureSettings;
+    private readonly CloudStorageSettings _cloudSettings;
 
     public ImageService(IUserRepository userRepository,
         ICloudStorageService cloudStorageService,
-        IOptions<AzureStorageSettings> azureSettings)
+        IOptions<CloudStorageSettings> azureSettings)
     {
         _userRepository = userRepository;
         _cloudStorageService = cloudStorageService;
-        _azureSettings = azureSettings.Value;
+        _cloudSettings = azureSettings.Value;
     }
 
     public async Task<ServiceResponse> UploadImageAsync(IFormFile image, string userId)
@@ -34,7 +34,7 @@ public class ImageService : IImageService
         }
         string? oldImageUrl = user.ProfilePicture;
 
-        var result = await _cloudStorageService.UploadAsync(_azureSettings.Containers.Images, image, userId);
+        var result = await _cloudStorageService.UploadAsync(_cloudSettings.Containers.Images, image, userId);
         if (result.IsSuccess)
         {
             user.ProfilePicture = result.Blob.FileUrl;
@@ -43,7 +43,7 @@ public class ImageService : IImageService
             {
                 var blobUri = new Uri(oldImageUrl);
                 string blobName = ExtractBlobNameFromUrl(blobUri.AbsoluteUri);
-                await _cloudStorageService.DeleteAsync(_azureSettings.Containers.Images, blobName);
+                await _cloudStorageService.DeleteAsync(_cloudSettings.Containers.Images, blobName);
             }
             return new ServiceResponse
             {
@@ -78,7 +78,7 @@ public class ImageService : IImageService
         }
         var blobUri = new Uri(oldImageUrl);
         string fileName = ExtractBlobNameFromUrl(blobUri.AbsoluteUri);
-        var result = await _cloudStorageService.DeleteAsync(_azureSettings.Containers.Images, fileName);
+        var result = await _cloudStorageService.DeleteAsync(_cloudSettings.Containers.Images, fileName);
         if (result.IsSuccess)
         {
             return new ServiceResponse
