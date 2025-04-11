@@ -17,7 +17,7 @@ public class ApplicationDbContext:IdentityDbContext<AppUser>
         base.OnModelCreating(builder);
         RoleSeeder.SeedRoles(builder);
     }
-
+    public DbSet<Note> Notes { get; set; }
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<VerificationCode> VerificationCodes { get; set; }

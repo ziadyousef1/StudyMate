@@ -53,6 +53,8 @@ namespace StudyMate.DependancyInjection;
             services.AddScoped<ITokenRepository,TokenRepository>();
             services.AddScoped<IRoleRepository,RoleRepository>();
             services.AddScoped<IUserService,UserService>();
+            services.AddScoped<INoteRepository, NoteRepository>();
+            services.AddScoped<INoteService, NoteService>();
             services.AddScoped<IImageService,ImageService>();
             services.AddScoped<ICloudStorageService, CloudStorageService>();
             var emailConfiguration = configuration.GetSection("EmailConfiguration").Get<EmailConfigration>();

@@ -1,5 +1,6 @@
 using AutoMapper;
 using StudyMate.DTOs.Authentication;
+using StudyMate.DTOs.Note;
 using StudyMate.DTOs.Profile;
 using StudyMate.Models;
 
@@ -17,7 +18,12 @@ public class MappingConfig:Profile
         CreateMap<UpdateUser, AppUser>();
         CreateMap<AppUser, UpdateUser>();
         CreateMap<CreateUser, AppUser>();
+        CreateMap<CreateNote, Note>();
+        CreateMap<Note, GetNote>();
+        CreateMap<UpdateNote, Note>();
+
         
-        
+
+
     }
 }

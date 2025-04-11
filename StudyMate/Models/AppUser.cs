@@ -14,5 +14,6 @@ public class AppUser:IdentityUser
     
     public virtual List<Notification> Notifications { get; set; } = new();
     public virtual List<VerificationCode> VerificationCodes { get; set; } = new();
+    public virtual List<Note> Notes { get; set; } = new();
     
 }
