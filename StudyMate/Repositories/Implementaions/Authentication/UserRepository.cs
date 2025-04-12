@@ -80,12 +80,12 @@ namespace StudyMate.Repositories.Implementaions.Authentication
         {
             var user = await GetUserByEmail(appUser.Email!);
             if (user is null || !await userManager.CheckPasswordAsync(user, appUser.PasswordHash!))
-                return new LoginResponse(Id:user.Id,false, Message:"Invalid email or password");
+                return new LoginResponse(IsSuccess:false, Message:"Invalid email or password");
 
             if (user.EmailConfirmed == false)
-                return new LoginResponse(Id:user.Id,false, Message: "Email not confirmed");
+                return new LoginResponse(IsSuccess:false, Message: "Email not confirmed");
 
-            return new LoginResponse(Id:user.Id,true,  Message :"Login successful");           
+            return new LoginResponse(IsSuccess:true,Message :"Login successful");           
         }
 
         public async Task<int> RemoveUserByEmail(string email)
