@@ -81,7 +81,7 @@ namespace StudyMate.Services.Implementaions
                 logger.LogError(new Exception($"Refresh token could not be saved for user {_user.Email}"), "Refresh token could not be saved");
                 return new LoginResponse(Message: "Error occured on login");
             }
-            return new LoginResponse(IsSuccess: true, Token: jwtToken, RefreshToken: refreshToken,Role:role);
+            return new LoginResponse(Id:_user.Id,IsSuccess: true, Token: jwtToken, RefreshToken: refreshToken,Role:role);
           
         }
 
