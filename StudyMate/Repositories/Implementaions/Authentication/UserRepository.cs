@@ -21,7 +21,7 @@ namespace StudyMate.Repositories.Implementaions.Authentication
             if (user is not null)
             {
                 userResult.Succeeded = false;
-                userResult.Errors.Add("User with this email already exists");
+                userResult.Message ="The account already exists for that email";
                 return userResult;
             }
             var result = await userManager.CreateAsync(appUser, appUser.PasswordHash!);

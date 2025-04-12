@@ -42,7 +42,7 @@ namespace StudyMate.Services.Implementaions
             var result = await userRepository.CreateUser(mappedUser);
             if(!result.Succeeded)
             {
-                return new ServiceResponse { Message = "User creation failed", IsSuccess = false };
+                return new ServiceResponse { Message = result.Message, IsSuccess = false };
             }
 
             var _user = await userRepository.GetUserByEmail(user.Email);
