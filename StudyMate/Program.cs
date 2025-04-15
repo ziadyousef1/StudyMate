@@ -22,6 +22,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 );
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddApplicationServices(builder.Configuration);
@@ -36,7 +37,8 @@ app.MapScalarApiReference(options =>
 
 
 });
-
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
