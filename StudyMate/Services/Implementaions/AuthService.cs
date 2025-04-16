@@ -1,15 +1,7 @@
 ﻿using System.Security.Cryptography;
 using AutoMapper;
-using EmailService;
-using FluentValidation;
 using StudyMate.DTOs;
 using StudyMate.DTOs.Authentication;
-using StudyMate.Models;
-using StudyMate.Repositories.Interfaces;
-using StudyMate.Services.Interfaces;
-using StudyMate.Services.Interfaces.Authentication;
-using StudyMate.Validations;
-using StudyMate.Validations.Authentication;
 
 namespace StudyMate.Services.Implementaions
 {

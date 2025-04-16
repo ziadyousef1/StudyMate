@@ -1,9 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using StudyMate.Data;
-using StudyMate.DTOs.Authentication;
-using StudyMate.Models;
-using StudyMate.Repositories.Interfaces;
-
 namespace StudyMate.Repositories.Implementaions;
 
 public class NoteRepository(ApplicationDbContext context) : INoteRepository

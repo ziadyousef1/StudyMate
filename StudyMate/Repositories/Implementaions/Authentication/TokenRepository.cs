@@ -1,14 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using System.Text;
-
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using StudyMate.Data;
-using StudyMate.Models;
-using StudyMate.Repositories.Interfaces;
 
 namespace StudyMate.Repositories.Implementaions.Authentication
 {

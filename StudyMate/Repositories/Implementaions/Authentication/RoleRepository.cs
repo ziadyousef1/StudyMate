@@ -1,9 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Identity;
-using StudyMate.Models;
-using StudyMate.Repositories.Interfaces;
-
-namespace StudyMate.Repositories.Implementaions.Authentication
+﻿namespace StudyMate.Repositories.Implementaions.Authentication
 {
     public class RoleRepository(UserManager<AppUser> userManager) : IRoleRepository
     {

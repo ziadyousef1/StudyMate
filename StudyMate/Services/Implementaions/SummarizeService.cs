@@ -2,10 +2,7 @@ using Azure;
 using Azure.AI.OpenAI;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using Microsoft.Extensions.Options;
 using OpenAI.Chat;
-using StudyMate.Services.Interfaces;
-using StudyMate.Settings;
 
 namespace StudyMate.Services.Implementaions;
 

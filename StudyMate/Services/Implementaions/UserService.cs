@@ -1,8 +1,5 @@
 using AutoMapper;
 using StudyMate.DTOs.Profile;
-using StudyMate.Models;
-using StudyMate.Repositories.Interfaces;
-using StudyMate.Services.Interfaces;
 
 namespace StudyMate.Services.Implementaions;
 

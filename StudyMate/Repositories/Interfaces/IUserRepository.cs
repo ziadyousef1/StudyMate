@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using StudyMate.DTOs;
 using StudyMate.DTOs.Authentication;
-using StudyMate.Models;
 
 namespace StudyMate.Repositories.Interfaces;
 

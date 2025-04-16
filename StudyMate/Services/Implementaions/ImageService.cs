@@ -1,8 +1,4 @@
-using Microsoft.Extensions.Options;
 using StudyMate.DTOs;
-using StudyMate.Repositories.Interfaces;
-using StudyMate.Services.Interfaces;
-using StudyMate.Settings;
 
 namespace StudyMate.Services.Implementaions;
 

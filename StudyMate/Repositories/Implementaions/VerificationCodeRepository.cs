@@ -1,8 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using StudyMate.Data;
-using StudyMate.Models;
-using StudyMate.Repositories.Interfaces;
-
 namespace StudyMate.Repositories.Implementaions;
 
 public class VerificationCodeRepository:IVerificationCodeRepository

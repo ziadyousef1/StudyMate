@@ -1,12 +1,6 @@
-using System.Reflection.Metadata;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Azure.Storage.Blobs.Specialized;
-using Microsoft.Azure.Storage.Blob;
-using Microsoft.Extensions.Options;
 using StudyMate.DTOs;
-using StudyMate.Services.Interfaces;
-using StudyMate.Settings;
 
 namespace StudyMate.Services.Implementaions;
 

@@ -1,13 +1,6 @@
-﻿using AutoMapper.Configuration.Annotations;
-
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
-using StudyMate.Data;
+﻿using System.Security.Claims;
 using StudyMate.DTOs;
 using StudyMate.DTOs.Authentication;
-using StudyMate.Models;
-using StudyMate.Repositories.Interfaces;
 
 namespace StudyMate.Repositories.Implementaions.Authentication
 {

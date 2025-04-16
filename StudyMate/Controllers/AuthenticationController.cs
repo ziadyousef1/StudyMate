@@ -1,14 +1,12 @@
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
 using System.Web;
+using Microsoft.AspNetCore.Mvc;
 using StudyMate.DTOs.Authentication;
-using StudyMate.Services.Interfaces.Authentication;
 
 namespace StudyMate.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthenticationController(IAuthService authenticationService) : ControllerBase
+public class AuthenticationController(IAuthService authenticationService ) : ControllerBase
 {
 
     [HttpPost("login")]

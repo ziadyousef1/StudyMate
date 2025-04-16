@@ -1,5 +1,3 @@
-using StudyMate.Models;
-
 namespace StudyMate.Repositories.Interfaces;
 
 public interface INoteRepository
