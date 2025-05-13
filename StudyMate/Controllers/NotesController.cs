@@ -5,7 +5,6 @@ using StudyMate.DTOs.Note;
 using StudyMate.Services.Interfaces;
 
 namespace StudyMate.Controllers;
-[Authorize(Roles = "User")]
 [ApiController]
 [Route("api/[controller]")]
 public class NotesController : ControllerBase

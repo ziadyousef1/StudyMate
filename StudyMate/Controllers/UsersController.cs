@@ -7,7 +7,6 @@ using StudyMate.Services.Interfaces;
 namespace StudyMate.Controllers;
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
 public class UsersController:ControllerBase
 {
     private readonly IUserService _userService;
