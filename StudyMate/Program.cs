@@ -34,7 +34,6 @@ app.MapScalarApiReference(options =>
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

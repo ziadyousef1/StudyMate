@@ -19,7 +19,7 @@ public class SummarizeService:ISummarizeService
 
         AzureOpenAIClient azureClient = new(new Uri(_aiSettings.Endpoint), credential); 
 
-        ChatClient chatClient = azureClient.GetChatClient("gpt-4o");  
+        ChatClient chatClient = azureClient.GetChatClient("gpt-4.1");  
     
         var messages = new List<ChatMessage>
         {

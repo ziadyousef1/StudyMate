@@ -6,7 +6,7 @@ namespace StudyMate.DependancyInjection;
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("LocalConnection")));
+                options.UseSqlServer(configuration.GetConnectionString("ProductionConnection")));
             services.AddDefaultIdentity<AppUser>(opt =>
                 {
                     opt.Password.RequireDigit = false;
